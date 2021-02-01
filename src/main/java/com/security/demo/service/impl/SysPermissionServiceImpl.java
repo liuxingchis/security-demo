@@ -27,10 +27,10 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
     @Override
     public List<SysPermission> selectListByUser(Long userId) {
-        List<Long> sysUserRoleRelationIdList = sysUserRoleRelationRepository.findAllByUserId(userId).stream().map(SysUserRoleRelation::getRoleId).collect(Collectors.toList());
-        List<Long> sysRoleIdList = sysRoleRepository.findAllById(sysUserRoleRelationIdList).stream().map(SysRole::getId).collect(Collectors.toList());
-        List<Long> sysPermissionIdList = sysRolePermissionRelationRepository.findAllByRoleIdIsIn(sysRoleIdList).stream().map(SysRolePermissionRelation::getPermissionId).collect(Collectors.toList());
-        return sysPermissionRepository.findAllById(sysPermissionIdList);
+//        List<Long> sysRoleIdList = sysUserRoleRelationRepository.findAllByUserId(userId).stream().map(SysUserRoleRelation::getRoleId).collect(Collectors.toList());
+//        List<Long> sysPermissionIdList = sysRolePermissionRelationRepository.findAllByRoleIdIsIn(sysRoleIdList).stream().map(SysRolePermissionRelation::getPermissionId).collect(Collectors.toList());
+//        return sysPermissionRepository.findAllById(sysPermissionIdList);
+        return sysPermissionRepository.selectListByUserId(userId);
     }
 
     @Override
