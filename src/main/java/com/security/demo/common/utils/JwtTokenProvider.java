@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Component
 
@@ -51,7 +52,7 @@ public class JwtTokenProvider {
 
                 .compact();
 
-        redisTemplate.opsForValue().set(token, username, authParameters.getTokenExpiredMs());
+        redisTemplate.opsForValue().set(token, username, authParameters.getTokenExpiredMs(), TimeUnit.MILLISECONDS);
 
         return token;
 
